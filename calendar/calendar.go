@@ -5,9 +5,13 @@ import (
 	"time"
 )
 
-func main() {
-	now := time.Now()
-	year, month, _ := now.Date()
+const (
+    // See http://golang.org/pkg/time/#Parse
+    timeFormat = "2006-01-02 15:04 MST"
+)
+
+func showMonthCalendar(t time.Time) {
+	year, month, _ := t.Date()
 
 	fmt.Printf("\t\t%v\t\t%v\n", month, year)
 	fmt.Println("Sun\tMon\tTue\tWed\tThu\tFri\tSat")
@@ -30,4 +34,8 @@ func main() {
 		}
 		cal = cal.AddDate(0, 0, 1)
 	}
+}
+
+func main() {
+	showMonthCalendar(time.Now())
 }
